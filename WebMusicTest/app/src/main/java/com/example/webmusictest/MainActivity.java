@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.webmusictest.beans.Person;
+import com.example.webmusictest.beans.SearchResult;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try{
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
+//                            .url("http://so.ard.iyyin.com/s/song_with_out?q=周杰伦&page=1&size=3")
                             .url("http://10.0.2.2/get_data.json")
                             .build();
                     Response response = client.newCall(request).execute();
@@ -85,13 +87,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Gson gson = new Gson();
         List<Person> ps = gson.fromJson(jsonData, new TypeToken<List<Person>>(){}.getType());
         for (Person p : ps) {
-            Log.d("MainActivity", p.getId());
+            Log.d("MainActivity", p.getId()+"");
             List<Person.Name> name = p.getName();
             for (Person.Name n : name) {
                 Log.d("MainActivity", n.getA());
             }
             Log.d("MainActivity", p.getVersion());
         }
+
+//        List<SearchResult> srs = gson.fromJson(jsonData, new TypeToken<List<SearchResult>>(){}.getType());
+//        for (SearchResult sr : srs) {
+//            Log.d("MainActivity", sr.getRows()+"");
+//            List<SearchResult.Data> ds = sr.getData();
+//            for (SearchResult.Data d : ds) {
+//                Log.d("MainActivity", d.getSongName());
+//                Log.d("MainActivity", d.getSingerName());
+//                List<SearchResult.Data.AuditionList> als = d.getAuditonList();
+//                for (SearchResult.Data.AuditionList al : als) {
+//                    Log.d("MainActivity", al.getDuration());
+//                    Log.d("MainActivity", al.getFormat());
+//                    Log.d("MainActivity", al.getUrl());
+//                    Log.d("MainActivity", al.getSize());
+//                }
+//                List<SearchResult.Data.MvList> mls = d.getMvList();
+//                for (SearchResult.Data.MvList ml : mls) {
+//                    Log.d("MainActivity", ml.getId());
+//                    Log.d("MainActivity", ml.getFormat());
+//                    Log.d("MainActivity", ml.getType_description());
+//                    Log.d("MainActivity", ml.getSize());
+//                    Log.d("MainActivity", ml.getUrl());
+//                    Log.d("MainActivity", ml.getDuration());
+//                    Log.d("MainActivity", ml.getPic_url());
+//                }
+//            }
+//        }
+
     }
 
     private void showResponse(final String respone){

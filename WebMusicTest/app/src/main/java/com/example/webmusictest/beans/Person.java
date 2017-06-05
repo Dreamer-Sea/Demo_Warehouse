@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public class Person {
-    private String id;
+    private int id;
     private String version;
     private List<Name> name;
 
@@ -31,7 +31,7 @@ public class Person {
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class Person {
         return version;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
