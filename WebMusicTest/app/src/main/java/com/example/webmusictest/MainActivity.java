@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView txt = (TextView) findViewById(R.id.textview1);
         Button myBtn = (Button) findViewById(R.id.button1);
         myBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                         mHandler.post(new Thread() {
                             @Override
                             public void run() {
-                                txt.setText(res + " " + new Date());
+
                             }
                         });
                     }
