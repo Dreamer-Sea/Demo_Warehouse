@@ -16,8 +16,10 @@ import java.util.List;
  */
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
+
     private List<NewsItem> mNewsList;
-    class ViewHolder extends RecyclerView.ViewHolder{
+
+    static class ViewHolder extends RecyclerView.ViewHolder{
         TextView newsTitleText;
         TextView newsDayText;
 

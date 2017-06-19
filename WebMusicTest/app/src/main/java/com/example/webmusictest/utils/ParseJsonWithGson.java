@@ -17,15 +17,11 @@ import java.util.List;
  */
 
 public class ParseJsonWithGson {
+
     public static List<NewsItem> parseDailyNewsJson(String jsonData){
         Gson gson = new Gson();
         DailyNews resList = gson.fromJson(jsonData, DailyNews.class);
-//        Log.d("MainActivity", resList.getShowapi_res_code()+"");
-//        Log.d("MainActivity", resList.getShowapi_res_error());
         ResBody resBody = resList.getShowapi_res_body();
-//        Log.d("MainActivity", resBody.getShowapi_res_error());
-//        Log.d("MainActivity", resBody.getShowapi_res_code()+"");
-//        Log.d("MainActivity", resBody.getMsg());
         RBody rBody = resBody.getShowapi_res_body();
         List<NewsList> newsList = rBody.getNewsLists();
         List<NewsItem> newsItemList = new ArrayList<>();
@@ -35,11 +31,7 @@ public class ParseJsonWithGson {
             i.setDay(list.getDay());
             i.setUrl(list.getUrl());
             newsItemList.add(i);
-//            Log.d("MainActivity", list.getTitle());
-//            Log.d("MainActivity", list.getDay());
-//            Log.d("MainActivity", list.getUrl());
         }
-
         return newsItemList;
     }
 }
