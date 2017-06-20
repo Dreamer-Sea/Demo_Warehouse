@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/news_title_fragment"
-        android:name="com.example.webmusictest.fragments.NewsTitleFragment"
+        android:name="com.example.webmusictest.fragments.DailyNews.TitleFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:layout="@layout/news_title_fragment"

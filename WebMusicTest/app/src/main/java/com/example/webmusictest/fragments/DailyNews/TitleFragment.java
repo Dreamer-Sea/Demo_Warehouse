@@ -1,8 +1,12 @@
-package com.example.webmusictest.fragments;
+package com.example.webmusictest.fragments.DailyNews;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.webmusictest.R;
-import com.example.webmusictest.adapters.NewsAdapter;
+import com.example.webmusictest.adapters.DailyNewsDecoration;
 import com.example.webmusictest.beans.NewsItem;
 import com.example.webmusictest.threads.ReceiveXML;
 
@@ -23,7 +28,7 @@ import java.util.List;
  * Created by King on 2017/6/14.
  */
 
-public class NewsTitleFragment  extends Fragment {
+public class TitleFragment extends Fragment {
 
     private List<NewsItem> newsItemList = new ArrayList<>();
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -39,7 +44,6 @@ public class NewsTitleFragment  extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         newsTitleRecyclerView.setLayoutManager(layoutManager);
 
-
         try {
             ReceiveXML rx = new ReceiveXML();
             rx.start();
@@ -50,6 +54,7 @@ public class NewsTitleFragment  extends Fragment {
         }
 
         adapter = new NewsAdapter(newsItemList);
+        newsTitleRecyclerView.addItemDecoration(new DailyNewsDecoration(this.getActivity(), DailyNewsDecoration.VERTICAL_LIST));
         newsTitleRecyclerView.setAdapter(adapter);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
@@ -62,7 +67,7 @@ public class NewsTitleFragment  extends Fragment {
                     ReceiveXML rx = new ReceiveXML();
                     rx.start();
                     rx.join();
-
+                    newsItemList.addAll(rx.getData());
                     adapter.notifyDataSetChanged();
                     mSwipeRefreshLayout.setRefreshing(false);
                 } catch (InterruptedException e) {
@@ -91,6 +96,63 @@ public class NewsTitleFragment  extends Fragment {
         });
 
         return view;
+    }
+
+    public FragmentActivity getTitleFragmentActivity(){
+        return this.getActivity();
+    }
+
+    class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
+
+        private List<NewsItem> mNewsList;
+
+        class ViewHolder extends RecyclerView.ViewHolder{
+            TextView newsTitleText;
+            TextView newsDayText;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                newsTitleText = (TextView) itemView.findViewById(R.id.news_title);
+                newsDayText = (TextView) itemView.findViewById(R.id.news_day);
+            }
+        }
+
+        public NewsAdapter(List<NewsItem> mNewsList) {
+            this.mNewsList = mNewsList;
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.news_item, parent, false);
+            final ViewHolder holder = new ViewHolder(view);
+            view.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    NewsItem news = mNewsList.get(holder.getAdapterPosition());
+
+                    //点击新闻标题，跳转到新闻的正文
+//                    ContentActivity.actionStart(getActivity(), news.getUrl());
+                    Context context = getActivity();
+                    Intent intent = new Intent(context, ContentActivity.class);
+                    intent.putExtra("Url", news.getUrl());
+                    context.startActivity(intent);
+                }
+            });
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            NewsItem newsItem = mNewsList.get(position);
+            holder.newsTitleText.setText(newsItem.getTitle());
+            holder.newsDayText.setText(newsItem.getDay());
+        }
+
+        @Override
+        public int getItemCount() {
+            return mNewsList.size();
+        }
     }
 
 }

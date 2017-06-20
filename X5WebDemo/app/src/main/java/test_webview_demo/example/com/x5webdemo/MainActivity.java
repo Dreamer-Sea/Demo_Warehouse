@@ -1,4 +1,4 @@
-package com.example.webmusictest;
+package test_webview_demo.example.com.x5webdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
