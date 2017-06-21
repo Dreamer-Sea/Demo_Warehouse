@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <fragment
-        android:id="@+id/news_title_fragment"
-        android:name="com.example.webmusictest.fragments.DailyNews.TitleFragment"
+        android:id="@+id/bingpicture_fragment"
+        android:name="com.example.webmusictest.fragments.BingPicture.PictureFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/news_title_fragment"/>
+        tools:layout="@layout/fragment_bing_picture"/>
+
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.webmusictest.fragments.DailyNews;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +17,9 @@ import android.widget.TextView;
 
 import com.example.webmusictest.R;
 import com.example.webmusictest.adapters.DailyNewsDecoration;
-import com.example.webmusictest.beans.NewsItem;
+import com.example.webmusictest.beans.DailyNews.NewsItem;
 import com.example.webmusictest.threads.ReceiveXML;
+import com.example.webmusictest.utils.ParseJsonWithGson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,7 @@ public class TitleFragment extends Fragment {
     private List<NewsItem> newsItemList = new ArrayList<>();
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private NewsAdapter adapter;
+    private final String URL = "http://route.showapi.com/1071-1";
 
     @Nullable
     @Override
@@ -45,10 +46,10 @@ public class TitleFragment extends Fragment {
         newsTitleRecyclerView.setLayoutManager(layoutManager);
 
         try {
-            ReceiveXML rx = new ReceiveXML();
+            ReceiveXML rx = new ReceiveXML(URL);
             rx.start();
             rx.join();
-            newsItemList = rx.getData();
+            newsItemList = ParseJsonWithGson.parseDailyNewsJson(rx.getRes());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -57,17 +58,16 @@ public class TitleFragment extends Fragment {
         newsTitleRecyclerView.addItemDecoration(new DailyNewsDecoration(this.getActivity(), DailyNewsDecoration.VERTICAL_LIST));
         newsTitleRecyclerView.setAdapter(adapter);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-
         //下拉刷新
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.newstitle_swipeRefreshLayout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 try {
-                    ReceiveXML rx = new ReceiveXML();
+                    ReceiveXML rx = new ReceiveXML(URL);
                     rx.start();
                     rx.join();
-                    newsItemList.addAll(rx.getData());
+                    newsItemList.addAll(ParseJsonWithGson.parseDailyNewsJson(rx.getRes()));
                     adapter.notifyDataSetChanged();
                     mSwipeRefreshLayout.setRefreshing(false);
                 } catch (InterruptedException e) {
@@ -96,10 +96,6 @@ public class TitleFragment extends Fragment {
         });
 
         return view;
-    }
-
-    public FragmentActivity getTitleFragmentActivity(){
-        return this.getActivity();
     }
 
     class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
