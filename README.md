@@ -20,3 +20,8 @@ http://so.ard.iyyin.com/s/song_with_out?q=周杰伦&page=1&size=3
 2017.6.20
 在DailyNewsFragment的RecyclerView上实现了点击事件
 引入了腾讯的TBS，用于网页显示，使网页能在Activity里显示
+
+2017.6.24
+项目没有成功同步，所以先做登录
+项目名确定为“点点”
+用LitePal库实现用户信息的存储与读取
