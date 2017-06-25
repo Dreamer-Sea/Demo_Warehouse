@@ -19,23 +19,13 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <Button
-            android:id="@+id/create_database"
+        <fragment
+            android:id="@+id/login_fragment"
+            android:name="com.example.clickpointapp.fragments.LoginFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create database" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/add_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add data" />
-
-        <Button
-            android:id="@+id/query_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Query data" />
+        </fragment>
 
     </LinearLayout>
 

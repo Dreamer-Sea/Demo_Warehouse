@@ -1,10 +1,12 @@
 package com.example.clickpointapp.beans;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by King on 2017/6/24.
  */
 
-public class User {
+public class User extends DataSupport{
     private String username;
     private String password;
 
