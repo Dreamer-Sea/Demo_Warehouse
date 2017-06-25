@@ -28,6 +28,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private EditText usernameEd;
     private EditText passwordEd;
 
+    private View view;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -48,7 +50,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_login, null);
+        view = inflater.inflate(R.layout.fragment_login, container, false);
+        return view;
     }
 
     @Override
