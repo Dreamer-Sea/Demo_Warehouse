@@ -1,4 +1,4 @@
-package com.example.clickpointapp.beans;
+package com.example.webmusictest.beans.Login;
 
 import org.litepal.crud.DataSupport;
 

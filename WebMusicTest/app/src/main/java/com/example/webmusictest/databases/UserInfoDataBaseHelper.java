@@ -1,4 +1,4 @@
-package com.example.clickpointapp.databases;
+package com.example.webmusictest.databases;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

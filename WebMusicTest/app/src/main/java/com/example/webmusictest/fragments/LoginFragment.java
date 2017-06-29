@@ -1,17 +1,17 @@
-package com.example.clickpointapp.fragments;
+package com.example.webmusictest.fragments;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.view.View;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.clickpointapp.R;
-import com.example.clickpointapp.beans.User;
+import com.example.webmusictest.R;
+import com.example.webmusictest.beans.Login.User;
 
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
