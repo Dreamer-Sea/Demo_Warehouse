@@ -2,12 +2,11 @@ package com.example.webmusictest.threads;
 
 
 
-import com.example.webmusictest.beans.NewsItem;
+import com.example.webmusictest.beans.DailyNews.NewsItem;
 import com.example.webmusictest.utils.ParseJsonWithGson;
 import com.show.api.ShowApiRequest;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * Created by King on 2017/6/19.
@@ -15,18 +14,22 @@ import java.util.concurrent.Callable;
 
 public class ReceiveXML extends Thread {
 
-    private List<NewsItem> data;
+    private String res;
+    private String url;
 
-    @Override
+    public ReceiveXML(String url){
+        this.url = url;
+    }
+
     public void run() {
         String appid = "39525";
         String secret = "7003fc66ab7443b3958e700508437360";
-        final String res = new ShowApiRequest("http://route.showapi.com/1071-1", appid, secret)
+        res = new ShowApiRequest(url, appid, secret)
                 .post();
-        this.data = ParseJsonWithGson.parseDailyNewsJson(res);
+//        this.data = ParseJsonWithGson.parseDailyNewsJson(res);
     }
 
-    public List<NewsItem> getData() {
-        return data;
+    public String  getRes() {
+        return res;
     }
 }

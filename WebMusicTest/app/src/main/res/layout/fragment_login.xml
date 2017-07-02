@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_user"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/nav_icon"
+        android:layout_marginTop="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/ed_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_username"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/image_user"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/ed_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/hint_password"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/ed_username"
+        android:layout_alignStart="@+id/ed_username" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/txt_login"
+        android:textSize="18sp"
+        android:layout_below="@+id/ed_password"
+        android:layout_toStartOf="@+id/image_user" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btn_login"
+        android:layout_toEndOf="@+id/image_user"
+        android:text="@string/txt_register"
+        android:textSize="18sp"/>
+
+</RelativeLayout>
