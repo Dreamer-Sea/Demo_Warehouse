@@ -1,7 +1,5 @@
 package com.example.webmusictest.utils;
 
-import android.util.Log;
-
 import com.example.webmusictest.beans.BingPicture.BingPicture;
 import com.example.webmusictest.beans.BingPicture.Picture;
 import com.example.webmusictest.beans.BingPicture.PictureItem;

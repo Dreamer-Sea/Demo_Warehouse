@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ClickPointApp</string>
+    <string name="app_name">点点</string>
     <string name="hint_username">请输入用户名</string>
     <string name="hint_password">请输入密码</string>
     <string name="txt_login">登录</string>
@@ -7,4 +7,7 @@
     <string name="rb_news">新闻</string>
     <string name="rb_image">图片</string>
     <string name="rb_user">我的</string>
+    <string name="txt_reset">重置</string>
+    <string name="register_title">用户注册</string>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>

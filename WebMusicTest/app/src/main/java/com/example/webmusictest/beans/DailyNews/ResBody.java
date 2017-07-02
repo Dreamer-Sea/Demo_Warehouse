@@ -1,7 +1,5 @@
 package com.example.webmusictest.beans.DailyNews;
 
-import com.example.webmusictest.beans.DailyNews.RBody;
-
 /**
  * Created by King on 2017/6/14.
  */

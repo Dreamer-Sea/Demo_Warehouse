@@ -1,6 +1,4 @@
 package com.example.webmusictest.beans.DailyNews;
-
-import com.example.webmusictest.beans.DailyNews.NewsList;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

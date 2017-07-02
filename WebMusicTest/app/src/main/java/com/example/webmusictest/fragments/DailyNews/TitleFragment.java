@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +17,7 @@ import android.widget.TextView;
 import com.example.webmusictest.R;
 import com.example.webmusictest.adapters.DailyNewsDecoration;
 import com.example.webmusictest.beans.DailyNews.NewsItem;
-import com.example.webmusictest.threads.ReceiveXML;
+import com.example.webmusictest.threads.ReceiveJSON;
 import com.example.webmusictest.utils.ParseJsonWithGson;
 
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class TitleFragment extends Fragment {
         newsTitleRecyclerView.setLayoutManager(layoutManager);
 
         try {
-            ReceiveXML rx = new ReceiveXML(URL);
+            ReceiveJSON rx = new ReceiveJSON(URL);
             rx.start();
             rx.join();
             newsItemList = ParseJsonWithGson.parseDailyNewsJson(rx.getRes());
@@ -64,7 +63,7 @@ public class TitleFragment extends Fragment {
             @Override
             public void onRefresh() {
                 try {
-                    ReceiveXML rx = new ReceiveXML(URL);
+                    ReceiveJSON rx = new ReceiveJSON(URL);
                     rx.start();
                     rx.join();
                     newsItemList.addAll(ParseJsonWithGson.parseDailyNewsJson(rx.getRes()));

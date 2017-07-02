@@ -15,7 +15,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.webmusictest.R;
 import com.example.webmusictest.beans.BingPicture.PictureItem;
-import com.example.webmusictest.threads.ReceiveXML;
+import com.example.webmusictest.threads.ReceiveJSON;
+import com.example.webmusictest.utils.DownloadUtils;
 import com.example.webmusictest.utils.ParseJsonWithGson;
 
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class PictureFragment extends Fragment {
     private PictureAdapter adapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class PictureFragment extends Fragment {
         pictureRecyclerView.setLayoutManager(layoutManager);
 
         try {
-            ReceiveXML rx = new ReceiveXML(URL);
+            ReceiveJSON rx = new ReceiveJSON(URL);
             rx.start();
             rx.join();
             pictureList.addAll(ParseJsonWithGson.parseBingPictureJson(rx.getRes()));
@@ -59,7 +59,7 @@ public class PictureFragment extends Fragment {
             @Override
             public void onRefresh() {
                 try {
-                    ReceiveXML rx = new ReceiveXML(URL);
+                    ReceiveJSON rx = new ReceiveJSON(URL);
                     rx.start();
                     rx.join();
                     pictureList = ParseJsonWithGson.parseBingPictureJson(rx.getRes());
@@ -76,6 +76,7 @@ public class PictureFragment extends Fragment {
 
     class PictureAdapter extends RecyclerView.Adapter<PictureAdapter.ViewHolder>{
 
+        private DownloadUtils downloadUtils;
         private List<PictureItem> mPictureList;
 
         class ViewHolder extends RecyclerView.ViewHolder{
@@ -94,7 +95,20 @@ public class PictureFragment extends Fragment {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.picture_item, parent, false);
-            ViewHolder holder = new ViewHolder(view);
+            final ViewHolder holder = new ViewHolder(view);
+
+            holder.bingImage.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    downloadUtils = new DownloadUtils(getContext());
+                    int position = holder.getAdapterPosition();
+                    PictureItem p = mPictureList.get(position);
+                    String[] t = p.getPic().split("/");
+                    String name = t[t.length-1];
+                    downloadUtils.downloadFile(p.getPic(), name);
+                }
+            });
+
             return holder;
         }
 

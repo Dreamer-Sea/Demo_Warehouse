@@ -1,6 +1,6 @@
 package com.example.webmusictest.beans.DailyNews;
 
-import com.google.gson.annotations.SerializedName;
+        import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by King on 2017/6/14.

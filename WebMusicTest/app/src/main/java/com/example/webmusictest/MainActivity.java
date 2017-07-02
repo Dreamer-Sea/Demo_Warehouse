@@ -13,11 +13,10 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
 
-import com.example.webmusictest.R;
 import com.example.webmusictest.adapters.FragmentAdapter;
 import com.example.webmusictest.fragments.BingPicture.PictureFragment;
 import com.example.webmusictest.fragments.DailyNews.TitleFragment;
-import com.example.webmusictest.fragments.LoginFragment;
+import com.example.webmusictest.fragments.User.LoginFragment;
 
 import java.util.ArrayList;
 import java.util.List;
