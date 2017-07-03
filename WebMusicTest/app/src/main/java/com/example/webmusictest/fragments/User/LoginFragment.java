@@ -3,6 +3,7 @@ package com.example.webmusictest.fragments.User;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.webmusictest.MainActivity;
 import com.example.webmusictest.R;
 import com.example.webmusictest.beans.Login.User;
 
@@ -85,7 +87,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_register:
                 //TODO implement
-                Toast.makeText(this.getContext(), "抱歉，该功能未完善", Toast.LENGTH_LONG).show();
+//                Toast.makeText(this.getContext(), "抱歉，该功能未完善", Toast.LENGTH_LONG).show();
+                final MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.setFragment2Fragment(new MainActivity.Fragment2Fragment(){
+                    @Override
+                    public void gotoFragment(ViewPager viewPager) {
+//                        mainActivity.setFragment2Fragment(string);
+                        viewPager.setCurrentItem(3);
+                    }
+                });
+                mainActivity.forSkip();
                 break;
         }
     }

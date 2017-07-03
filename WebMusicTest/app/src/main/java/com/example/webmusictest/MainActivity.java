@@ -17,6 +17,7 @@ import com.example.webmusictest.adapters.FragmentAdapter;
 import com.example.webmusictest.fragments.BingPicture.PictureFragment;
 import com.example.webmusictest.fragments.DailyNews.TitleFragment;
 import com.example.webmusictest.fragments.User.LoginFragment;
+import com.example.webmusictest.fragments.User.RegisterFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,20 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ViewPager vp;
     private RadioGroup rg;
+
+    public interface Fragment2Fragment{
+        public void gotoFragment(ViewPager viewPager);
+    }
+
+    private Fragment2Fragment fragment2Fragment;
+    public void setFragment2Fragment(Fragment2Fragment fragment2Fragment){
+        this.fragment2Fragment = fragment2Fragment;
+    }
+
+    public void forSkip(){
+        if(fragment2Fragment != null)
+            fragment2Fragment.gotoFragment(vp);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +90,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        List<Fragment> mList = new ArrayList<Fragment>();
+        List<Fragment> mList = new ArrayList<>();
         TitleFragment f1 = new TitleFragment();
         PictureFragment f2 = new PictureFragment();
         LoginFragment f3 = new LoginFragment();
+        RegisterFragment f4 = new RegisterFragment();
+
         mList.add(f1);
         mList.add(f2);
         mList.add(f3);
+        mList.add(f4);
+
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager(), mList);
         vp.setAdapter(adapter);
     }
