@@ -77,10 +77,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 //TODO implement
                 String username = usernameEd.getText().toString();
                 String password = passwordEd.getText().toString();
-                List<User> rus = DataSupport.select("username", "password")
+                List<User> res = DataSupport.select("username", "password")
                         .where("username = ?", username)
                         .where("password = ?", password).find(User.class);
-                if(rus.size() > 0)
+                if(res.size() > 0)
                     Toast.makeText(this.getContext(), "登录成功", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(this.getContext(), "登录失败", Toast.LENGTH_LONG).show();

@@ -3,40 +3,46 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/ed_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="109dp"
+        android:inputType="textPersonName"
+        android:hint="@string/hint_username"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="106dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:textSize="20sp"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/ed_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText"
-        android:layout_below="@+id/editText"
+        android:layout_alignStart="@+id/ed_username"
+        android:layout_below="@+id/ed_username"
         android:layout_marginTop="40dp"
+        android:inputType="textPassword"
+        android:hint="@string/hint_password"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="52dp"
-        android:text="Button" />
+        android:layout_marginTop="50dp"
+        android:text="@string/txt_login"
+        android:layout_below="@+id/ed_password"
+        android:layout_alignStart="@+id/ed_password"
+        android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignEnd="@+id/editText2"
-        android:text="Button" />
+        android:text="@string/txt_reset"
+        android:layout_alignBaseline="@+id/btn_login"
+        android:layout_alignBottom="@+id/btn_login"
+        android:layout_alignEnd="@+id/ed_password"
+        android:textSize="20sp"/>
 </RelativeLayout>
