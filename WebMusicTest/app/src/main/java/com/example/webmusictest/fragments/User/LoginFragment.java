@@ -18,6 +18,7 @@ import com.example.webmusictest.beans.Login.User;
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -29,6 +30,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private Button registerBtn;
     private EditText usernameEd;
     private EditText passwordEd;
+    private User user;
 
     @Override
     public void onAttach(Context context) {
@@ -36,15 +38,21 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         Connector.getDatabase();
 
-        User user = new User();
-        user.setUsername("zhangsan");
-        user.setPassword("123456");
-        user.save();
+        List<User> res = DataSupport.where("username = ?", "zhangsan").find(User.class);
+        if (res.size() <= 0){
+            user = new User();
+            user.setUsername("zhangsan");
+            user.setPassword("123456");
+            user.save();
+        }
 
-        user = new User();
-        user.setUsername("lisi");
-        user.setPassword("123456");
-        user.save();
+        res = DataSupport.where("username = ?", "lisi").find(User.class);
+        if (res.size() <= 0){
+            user = new User();
+            user.setUsername("lisi");
+            user.setPassword("123456");
+            user.save();
+        }
     }
 
     @Override
@@ -77,22 +85,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 //TODO implement
                 String username = usernameEd.getText().toString();
                 String password = passwordEd.getText().toString();
-                List<User> res = DataSupport.select("username", "password")
-                        .where("username = ?", username)
-                        .where("password = ?", password).find(User.class);
-                if(res.size() > 0)
+                List<User> res = DataSupport.where("username = ?", username).find(User.class);
+                if(res.size() > 0 && (res.get(0)).getPassword().equals(password))
                     Toast.makeText(this.getContext(), "登录成功", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(this.getContext(), "登录失败", Toast.LENGTH_LONG).show();
                 break;
             case R.id.btn_register:
                 //TODO implement
-//                Toast.makeText(this.getContext(), "抱歉，该功能未完善", Toast.LENGTH_LONG).show();
                 final MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.setFragment2Fragment(new MainActivity.Fragment2Fragment(){
                     @Override
                     public void gotoFragment(ViewPager viewPager) {
-//                        mainActivity.setFragment2Fragment(string);
                         viewPager.setCurrentItem(3);
                     }
                 });

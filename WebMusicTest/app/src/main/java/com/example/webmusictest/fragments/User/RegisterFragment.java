@@ -3,6 +3,7 @@ package com.example.webmusictest.fragments.User;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.webmusictest.MainActivity;
 import com.example.webmusictest.R;
 import com.example.webmusictest.beans.Login.User;
 
@@ -27,6 +29,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
     private EditText password;
     private Button register;
     private Button reset;
+    private Button back;
 
     @Nullable
     @Override
@@ -42,9 +45,11 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
         password = (EditText) view.findViewById(R.id.ed_password);
         register = (Button) view.findViewById(R.id.btn_register);
         reset = (Button) view.findViewById(R.id.btn_reset);
+        back = (Button) view.findViewById(R.id.btn_back);
 
         register.setOnClickListener(this);
         reset.setOnClickListener(this);
+        back.setOnClickListener(this);
     }
 
     @Override
@@ -54,9 +59,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
                 String name = username.getText().toString();
                 String pwd = password.getText().toString();
 
-                List<User> res = DataSupport.select("username", "password")
-                        .where("username = ?", name)
-                        .where("password = ?", pwd).find(User.class);
+                List<User> res = DataSupport.where("username = ?", name).find(User.class);
 
                 if(res.size() > 0)
                     Toast.makeText(this.getContext(), "该用户已存在", Toast.LENGTH_LONG).show();
@@ -73,6 +76,17 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
             case R.id.btn_reset:
                 username.setText("");
                 password.setText("");
+                break;
+
+            case R.id.btn_back:
+                final MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.setFragment2Fragment(new MainActivity.Fragment2Fragment(){
+                    @Override
+                    public void gotoFragment(ViewPager viewPager) {
+                        viewPager.setCurrentItem(2);
+                    }
+                });
+                mainActivity.forSkip();
                 break;
         }
     }
