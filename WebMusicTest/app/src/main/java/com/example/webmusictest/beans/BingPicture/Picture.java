@@ -19,8 +19,4 @@ public class Picture {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public void setPic(String pic) {
-        this.pic = pic;
-    }
 }

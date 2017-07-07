@@ -6,7 +6,8 @@ package com.example.webmusictest.beans.DailyNews;
  * Created by King on 2017/6/14.
  */
 
-public class NewsList {private String title;
+public class NewsList {
+    private String title;
     @SerializedName("long")
     private String url;
     private String day;

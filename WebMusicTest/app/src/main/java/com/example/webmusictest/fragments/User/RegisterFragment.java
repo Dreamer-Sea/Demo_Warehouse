@@ -67,8 +67,8 @@ public class RegisterFragment extends Fragment implements View.OnClickListener{
                     User u = new User();
                     u.setUsername(name);
                     u.setPassword(pwd);
-                    u.save();
-                    Toast.makeText(this.getContext(), "注册成功，请重新登录", Toast.LENGTH_LONG).show();
+                    if(u.save())
+                        Toast.makeText(this.getContext(), "注册成功，请重新登录", Toast.LENGTH_LONG).show();
                 }
 
                 break;

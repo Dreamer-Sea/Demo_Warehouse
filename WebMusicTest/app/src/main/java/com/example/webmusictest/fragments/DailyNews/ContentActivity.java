@@ -14,13 +14,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 
 public class ContentActivity extends AppCompatActivity {
 
-    com.tencent.smtt.sdk.WebView tbsContent;
-
-    public static void actionStart(Context context, String url){
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(url));
-        context.startActivity(intent);
-    }
+    private com.tencent.smtt.sdk.WebView tbsContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
